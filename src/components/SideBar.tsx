@@ -1,9 +1,9 @@
-import { Button } from "./Button";
+import GenreButton from "./GenreButton";
 
 interface SideBarProps {
   genres: Array<{
     id: number;
-    name: 'action' | 'comedy' | 'documentary' | 'drama' | 'horror' | 'family';
+    name: "action" | "comedy" | "documentary" | "drama" | "horror" | "family";
     title: string;
   }>;
   selectedGenreId: number;
@@ -13,24 +13,26 @@ interface SideBarProps {
 export function SideBar({
   genres,
   selectedGenreId,
-  buttonClickCallback
+  buttonClickCallback,
 }: SideBarProps) {
   return (
     <nav className="sidebar">
-      <span>Watch<p>Me</p></span>
+      <span>
+        Watch<p>Me</p>
+      </span>
 
       <div className="buttons-container">
-        {genres.map(genre => (
-          <Button
+        {genres.map((genre) => (
+          <GenreButton
             key={String(genre.id)}
+            genreId={genre.id}
             title={genre.title}
-            iconName={genre.name}
-            onClick={() => buttonClickCallback(genre.id)}
+            name={genre.name}
+            onClick={buttonClickCallback}
             selected={selectedGenreId === genre.id}
           />
         ))}
       </div>
-
     </nav>
-  )
+  );
 }
